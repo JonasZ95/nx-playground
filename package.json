@@ -27,6 +27,7 @@
   },
   "private": true,
   "dependencies": {
+    "@nrwl/nx-cloud": "^12.1.1",
     "bootstrap": "^5.0.1",
     "core-js": "^3.6.5",
     "document-register-element": "1.13.1",

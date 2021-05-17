@@ -13,7 +13,7 @@
   "npmScope": "qm-base",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
@@ -21,34 +21,52 @@
           "test",
           "e2e",
           "build-storybook"
-        ]
+        ],
+        "accessToken": "M2E3NmFjMmItZGZhZi00MDJiLTg1NWEtYTFmNjNjNzUzNzFhfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
   "projects": {
     "qm-app2": {
-      "tags": ["scope:store", "type:app"]
+      "tags": [
+        "scope:store",
+        "type:app"
+      ]
     },
     "qm-app2-e2e": {
       "tags": [],
-      "implicitDependencies": ["qm-app2"]
+      "implicitDependencies": [
+        "qm-app2"
+      ]
     },
     "qm-app3": {
       "tags": []
     },
     "qm-app3-e2e": {
       "tags": [],
-      "implicitDependencies": ["qm-app3"]
+      "implicitDependencies": [
+        "qm-app3"
+      ]
     },
     "ui": {
-      "tags": ["scope:store", "type:ui"]
+      "tags": [
+        "scope:store",
+        "type:ui"
+      ]
     },
     "ui-e2e": {
       "tags": [],
-      "implicitDependencies": ["ui"]
+      "implicitDependencies": [
+        "ui"
+      ]
     },
     "util-formatters": {
-      "tags": ["scope:shared", "type:util"]
+      "tags": [
+        "scope:shared",
+        "type:util"
+      ]
     }
   }
 }
