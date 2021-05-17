@@ -1,9 +1,9 @@
 {
+  "defaultProject": "qm-app2",
   "version": 2,
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
-  "defaultProject": "qm-app2",
   "generators": {
     "@nrwl/react": {
       "application": {
@@ -39,7 +39,10 @@
               "apps/qm-app2/src/favicon.ico",
               "apps/qm-app2/src/assets"
             ],
-            "styles": ["apps/qm-app2/src/styles.scss"],
+            "styles": [
+              "apps/qm-app2/src/styles.scss",
+              "./node_modules/bootstrap/scss/bootstrap.scss"
+            ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -117,6 +120,205 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/qm-app2-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui"],
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/ui",
+            "config": {
+              "configFolder": "libs/ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "ui-e2e": {
+      "root": "apps/ui-e2e",
+      "sourceRoot": "apps/ui-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ui-e2e/cypress.json",
+            "tsConfig": "apps/ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ui:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "ui:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ui-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "util-formatters": {
+      "root": "libs/util-formatters",
+      "sourceRoot": "libs/util-formatters/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/util-formatters/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/util-formatters"],
+          "options": {
+            "jestConfig": "libs/util-formatters/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "qm-app3": {
+      "root": "apps/qm-app3",
+      "sourceRoot": "apps/qm-app3/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/qm-app3",
+            "index": "apps/qm-app3/src/index.html",
+            "main": "apps/qm-app3/src/main.tsx",
+            "polyfills": "apps/qm-app3/src/polyfills.ts",
+            "tsConfig": "apps/qm-app3/tsconfig.app.json",
+            "assets": [
+              "apps/qm-app3/src/favicon.ico",
+              "apps/qm-app3/src/assets"
+            ],
+            "styles": ["apps/qm-app3/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/qm-app3/src/environments/environment.ts",
+                  "with": "apps/qm-app3/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "qm-app3:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "qm-app3:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/qm-app3/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/qm-app3"],
+          "options": {
+            "jestConfig": "apps/qm-app3/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "qm-app3-e2e": {
+      "root": "apps/qm-app3-e2e",
+      "sourceRoot": "apps/qm-app3-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/qm-app3-e2e/cypress.json",
+            "tsConfig": "apps/qm-app3-e2e/tsconfig.e2e.json",
+            "devServerTarget": "qm-app3:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "qm-app3:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/qm-app3-e2e/**/*.{js,ts}"]
           }
         }
       }

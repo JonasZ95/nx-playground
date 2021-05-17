@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@qm-base/ui": ["libs/ui/src/index.ts"],
+      "@qm-base/util-formatters": ["libs/util-formatters/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
