@@ -13,7 +13,6 @@ export interface GameCardProps {
 
 export function GameCard(props: GameCardProps) {
   const { game } = props;
-  console.dir(styles);
   return (
     <Card>
       <Card.Header>{game.name}</Card.Header>

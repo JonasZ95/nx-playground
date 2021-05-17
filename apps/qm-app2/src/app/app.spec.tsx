@@ -1,17 +1,20 @@
 import { render } from '@testing-library/react';
+import React from 'react';
+import { Router } from 'react-router-dom';
+import { FakeApi } from '../fakeapi-api';
+import {createMemoryHistory} from 'history';
 
-import App from './app';
+import App, { AppView } from './app';
 
 describe('App', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<App />);
+    const history = createMemoryHistory();
+    const { baseElement } = render(
+      <Router history={history}>
+        <AppView games={[]} api={new FakeApi()} />
+      </Router>
+    );
 
     expect(baseElement).toBeTruthy();
-  });
-
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(<App />);
-
-    expect(getByText('Welcome to qm-app2!')).toBeTruthy();
   });
 });
