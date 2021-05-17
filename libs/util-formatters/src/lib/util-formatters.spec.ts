@@ -1,7 +1,7 @@
-import { utilFormatters } from './util-formatters';
+import { formatRating } from './util-formatters';
 
 describe('utilFormatters', () => {
   it('should work', () => {
-    expect(utilFormatters()).toEqual('util-formatters');
+    expect(formatRating(1.999)).toEqual('1.99');
   });
 });
