@@ -32,6 +32,13 @@
       "tags": [],
       "implicitDependencies": ["qm-app2"]
     },
+    "qm-app3": {
+      "tags": []
+    },
+    "qm-app3-e2e": {
+      "tags": [],
+      "implicitDependencies": ["qm-app3"]
+    },
     "ui": {
       "tags": ["scope:store", "type:ui"]
     },
@@ -41,13 +48,6 @@
     },
     "util-formatters": {
       "tags": ["scope:shared", "type:util"]
-    },
-    "qm-app3": {
-      "tags": []
-    },
-    "qm-app3-e2e": {
-      "tags": [],
-      "implicitDependencies": ["qm-app3"]
     }
   }
 }
