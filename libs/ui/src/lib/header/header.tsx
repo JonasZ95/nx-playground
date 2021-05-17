@@ -13,7 +13,7 @@ export function Header(props: HeaderProps) {
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="#">{title}</Navbar.Brand>
+        <Navbar.Brand href="#header">{title}</Navbar.Brand>
       </Container>
     </Navbar>
   );
